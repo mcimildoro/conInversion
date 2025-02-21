@@ -50,7 +50,7 @@ html,body {
 }
 
 .animate-marquee {
-  animation: marquee 20s linear infinite;
+  animation: marquee 30s linear infinite;
   /* Ajusta la duración (20s) según la velocidad deseada */
 }
 
