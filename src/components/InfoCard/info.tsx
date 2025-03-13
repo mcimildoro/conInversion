@@ -3,6 +3,7 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { BarChart3, X } from "lucide-react"
 
+
 interface InfoCardProps {
   title: string
 }
@@ -54,7 +55,7 @@ export function InfoCard({ title }: InfoCardProps) {
             {/* Button */}
             <motion.button
               onClick={() => setIsOpen(true)}
-              className="w-80 bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded-lg font-medium transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-lg"
+              className="w-80 bg-[#16a34a] hover:bg-green-700 text-white text-lg py-3 px-6 rounded-full font-medium transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-lg"
               whileHover={{ y: -2 }}
               whileTap={{ y: 0 }}
             >

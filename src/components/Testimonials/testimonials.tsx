@@ -16,10 +16,10 @@ export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="bg-[#2c3e50] bg-opacity-90 text-gray-50 py-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="bg-[#F5F5F7] bg-opacity-90 text-gray-50 py-16 ">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-5">
         <div className="mb-16 text-center">
-          <h2 className="text-4xl font-bold text-somos">
+          <h2 className="text-4xl font-bold text-black">
             Testimonios
           </h2>
         </div>
@@ -74,7 +74,7 @@ export default function Testimonials() {
               </div>
 
               {/* Texto del Testimonio */}
-              <p className="text-base text-[#1C1C1C] leading-6 transition-all duration-500 pb-8 group-hover:text-gray-800">
+              <p className="text-base text-gray-600 leading-6 transition-all duration-500 pb-8 group-hover:text-gray-800">
                 {testimonial.quote}
               </p>
             </div>
@@ -90,10 +90,10 @@ export default function Testimonials() {
                 layout="fixed"
               />
               <div>
-                <h5 className="text-[#2c3e50] font-medium transition-all duration-500">
+                <h5 className="text-black font-medium transition-all duration-500">
                   {testimonial.name}
                 </h5>
-                <span className="text-sm leading-4 text-[#2c3e50]">
+                <span className="text-sm leading-4 text-gray-600">
                   {testimonial.role}
                 </span>
               </div>

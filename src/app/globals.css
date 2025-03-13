@@ -4,7 +4,7 @@
 
 
 html,body {
-  background: #2c3e50  ;
+  background: #ffffff  ;
   min-height: 100vh;
   background-attachment: fixed; /* Esto asegura que el fondo se mantenga fijo al hacer scroll */
 }

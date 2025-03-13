@@ -1,7 +1,6 @@
 'use client'
 
-import CoverParticles from "@/components/CoverParticles/cover-particles";
-import Introduction from "@/components/Introduction/introduction";
+import IntroSection from "@/components/Introduction/introduction";
 //import SpotlightCard from '@/components/SpotlightCard/SpotlightCard';
 import TransitionPage from "@/components/TransitionPage/transition-page";
 import { InfoCard } from "@/components/InfoCard/info"; // Adjust the import path as necessary+
@@ -15,6 +14,7 @@ import { FooterWithLogo } from "@/components/Footer/footer";
 import Testimonials from "@/components/Testimonials/testimonials";
 import Pricing from "@/components/PricingSections/pricing";
 import {FAQ} from "@/components/FAQs/faq";
+import ContainerPage from "@/components/Container/container-page";
 
 export default function Home() {
   return (
@@ -23,13 +23,11 @@ export default function Home() {
       <TransitionPage />
 
       {/* intro y conver section */}
-      <div className="flex flex-col min-h-[100vh] h-full bg-no-repeat bg-gradient-cover">
-        <CoverParticles />
-        <Introduction />
-      </div>
-      
+      <ContainerPage>
+        <IntroSection />
+      </ContainerPage>
 
-      <div className="relative w-full min-h-[300px] py-16 bg-[#1abc9c]">
+      <div className="relative w-full min-h-[300px] py-16 bg-[#F5F5F7]">
         {/* Fondo que cubre toda la sección */}
         <div className="absolute inset-0 w-full h-full "></div>
         <div className="relative z-30 w-full max-w-screen-2xl mx-auto px-6  md:pb-0 ">

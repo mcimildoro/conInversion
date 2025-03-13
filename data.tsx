@@ -392,4 +392,63 @@ export const teamMembers = [
   ]
   
   
+  interface Oportunidades {
+    image: string;
+    title: string;
+    description: string;
+    stats?: {
+      percentage: string;
+      timeframe: string;
+    };
+    details: string;
+  }
   
+  export const cards: Oportunidades[] = [
+    {
+      title: "Redwood Transport",
+      description: "Camiones de carga con aumento del 18% en los últimos 3 meses.",
+      image: "/assets/truck.jpg",
+      details:
+        "Redwood Transport ha experimentado un crecimiento del 18% debido al aumento en la demanda de transporte de mercancías. Su expansión en rutas y eficiencia logística la convierten en una opción de inversión atractiva.",
+      stats: {
+        percentage: "18%",
+        timeframe: "3 meses",
+      },
+    },
+    {
+      title: "Tegna Inc. (TGNA)",
+      description: "Compañía de telecomunicaciones con fuerte crecimiento en el sector.",
+      image: "/assets/telecom.jpg",
+      details: `
+        **🔍 Análisis de Inversión de TEGNA Inc. (TGNA)**
+        
+        TEGNA Inc. se ha convertido en un referente en la industria de medios y televisión en EE.UU., con 64 estaciones de TV y múltiples canales digitales. Su diversificación de ingresos proviene de suscripciones (52%), publicidad (44%) y anuncios políticos en años electorales.
+  
+        💰 **Fortalezas:**  
+        - Genera **liquidez superior al doble de sus gastos**  
+        - **Recompra de acciones** de $715M que impulsa su valoración  
+        - No tiene pagos de deuda significativos hasta **2026**  
+  
+        ⚠️ **Riesgos:**  
+        - **Alta deuda** (116% de su patrimonio), aunque ha ido reduciéndose  
+        - **Impacto de litigios pasados**, aunque sin consecuencias graves  
+  
+        📌 **Conclusión:**  
+        TEGNA es una opción atractiva de inversión, pero recomendamos **limitar la inversión al 7% del capital** y no comprar acciones por encima de **$36.90**`,
+      stats: {
+        percentage: "23%",
+        timeframe: "2 meses",
+      },
+    },
+    {
+      title: "Worthington Steel (WS)",
+      description: "Crecimiento sólido en el sector de fabricación de acero.",
+      image: "/assets/steel.jpg",
+      details:
+        "Worthington Steel ha mostrado un aumento del 85% en los últimos 11 meses debido a la fuerte demanda de materiales industriales y su expansión en el mercado.",
+      stats: {
+        percentage: "85%",
+        timeframe: "11 meses",
+      },
+    },
+  ]

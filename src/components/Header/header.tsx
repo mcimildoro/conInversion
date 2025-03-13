@@ -1,10 +1,9 @@
 "use client"
 
-import { socialNetworks } from "../../../data";
-import Link from "next/link";
 import { MotionTransition } from "../TransitionComponent/transition-component";
 import Image from "next/image";
 import "@/app/globals.css";
+import { Button } from "../ui/button";
 
 const Header = () => {
     return (
@@ -25,30 +24,10 @@ const Header = () => {
             />
           </div>
 
-          {/* Redes Sociales + Botón Login a la derecha */}
           <div className="flex items-center gap-5">
-            
-            {/* Redes Sociales */}
-            <div className="flex items-center gap-6 ">
-              {socialNetworks.map(({ logo, src, id }) => (
-                <Link
-                  key={id}
-                  href={src}
-                  target="_blank"
-                  className="transition-all duration-300 hover:text-secondary text-quienes text-2xl"
-                >
-                  {logo}
-                </Link>
-              ))}
-            </div>
 
             {/* Botón Login */}
-            <Link 
-              href="#" 
-              className="text-quienes  focus:ring-4 focus:ring-gray-300 text-xl  rounded-lg  px-4 py-2 transition-all duration-300"
-            >
-              Log in
-            </Link>
+            <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full px-6 w-28 h-12">Log in</Button>
 
           </div>
         </div>
