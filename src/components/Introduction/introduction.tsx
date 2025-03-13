@@ -18,7 +18,7 @@ export default function IntroSection() {
             className="flex flex-col order-1 "
           >
             <div className="flex flex-col justify-center max-w-lg">
-              <h1 className="mb-5 text-4xl leading-tight text-center md:text-left md:text-5xl md:mb-10 font-bold text-[#121212] p-3">
+              <h1 className="mb-5 text-3xl leading-tight text-center md:text-left md:text-5xl md:mb-10 font-bold text-[#121212] p-3">
                 Menos lectura, <br />
                 <TypeAnimation
                   sequence={[

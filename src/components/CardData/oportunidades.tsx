@@ -171,7 +171,8 @@ export default function OpportunitiesCarousel() {
                   />
                 ))}
               </div>
-            </div>        {/* fin carousel*/ }
+            </div>
+
         </div>
       </div>
 

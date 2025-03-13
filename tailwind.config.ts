@@ -82,7 +82,7 @@ const config = {
   		backgroundImage: {
   			buttonColorPrincipal: '#F4F4F4',
   			'darker-green-gradient': 'linear-gradient(90deg, #1B5E20, #2E7D32)',
-  			'gradient-cover': 'linear-gradient(90.21deg, rgba(2, 20, 5, 0.95) -5.91%, rgba(2, 20, 5, 0) 111.58%)',
+  			'gradient-cover': 'linear-gradient(90.21deg, rgba(0, 181, 120, 0.95) -5.91%, rgba(0, 181, 120, 0) 111.58%)',
 			'testimonials': "linear-gradient(90.21deg, rgba(27, 67, 50, 0.95) -5.91%, rgba(45, 106, 79, 0) 111.58%)",
         	"testimonials-gradient": "linear-gradient(to bottom, #4CAF50, #2E7D32)",
         
