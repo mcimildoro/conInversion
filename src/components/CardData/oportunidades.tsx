@@ -83,64 +83,64 @@ export default function OpportunitiesCarousel() {
 
           {/* Carrusel Mejorado */}
           <div
-            className="relative w-96 aspect-[16/10] max-w-5xl mx-auto"
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-          >
-            <div className="absolute inset-0">
-              {cards.map((card, index) => {
-                const position = (index - currentIndex + cards.length) % cards.length
-                const isActive = position === 0
-                const isPrev = position === cards.length - 1
-                const isNext = position === 1
+              className="relative w-full  mx-auto aspect-[16/10] md:w-96 md:aspect-[16/10] max-w-5xl"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
+              <div className="absolute inset-0">
+                {cards.map((card, index) => {
+                  const position = (index - currentIndex + cards.length) % cards.length;
+                  const isActive = position === 0;
+                  const isPrev = position === cards.length - 1;
+                  const isNext = position === 1;
 
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{
-                      opacity: isActive ? 1 : 0.5,
-                      scale: isActive ? 1 : 0.85,
-                      x: isPrev ? "-100%" : isNext ? "100%" : 0,
-                      zIndex: isActive ? 20 : 10,
-                    }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 200,
-                      damping: 20,
-                    }}
-                    className="absolute inset-0 rounded-xl overflow-hidden shadow-lg"
-                  >
-                    <div className="relative w-full h-full">
-                      <Image src={card.image || "/placeholder.svg"} alt={card.title} fill className="object-cover" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                  return (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{
+                        opacity: isActive ? 1 : 0.5,
+                        scale: isActive ? 1 : 0.85,
+                        x: isPrev ? "-100%" : isNext ? "100%" : 0,
+                        zIndex: isActive ? 20 : 10,
+                      }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 200,
+                        damping: 20,
+                      }}
+                      className="absolute inset-0 rounded-xl overflow-hidden shadow-lg"
+                    >
+                      <div className="relative w-full h-full">
+                        <Image src={card.image || "/placeholder.svg"} alt={card.title} fill className="object-cover" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
-                      {/* Contenido de la tarjeta */}
-                      <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white">
-                        {card.stats && (
-                          <div className="inline-flex items-center bg-green-600 rounded-full px-3 py-1 mb-2 text-sm">
-                            <span className="font-bold">{card.stats.percentage}</span>
-                            <span className="ml-1 text-xs opacity-90">en {card.stats.timeframe}</span>
-                          </div>
-                        )}
-                        <h3 className="text-lg md:text-xl font-bold mb-1">{card.title}</h3>
-                        <p className="text-xs md:text-sm text-gray-200 mb-3 line-clamp-2">{card.description}</p>
-                        <Button
-                          onClick={() => setIsModalOpen(true)}
-                          className="bg-white text-green-600 hover:bg-gray-100 text-sm px-4 py-1 rounded-full"
-                        >
-                          Más información
-                        </Button>
+                        {/* Contenido de la tarjeta */}
+                        <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white">
+                          {card.stats && (
+                            <div className="inline-flex items-center bg-green-600 rounded-full px-3 py-1 mb-2 text-sm">
+                              <span className="font-bold">{card.stats.percentage}</span>
+                              <span className="ml-1 text-xs opacity-90">en {card.stats.timeframe}</span>
+                            </div>
+                          )}
+                          <h3 className="text-lg md:text-xl font-bold mb-1">{card.title}</h3>
+                          <p className="text-xs md:text-sm text-gray-200 mb-3 line-clamp-2">{card.description}</p>
+                          <Button
+                            onClick={() => setIsModalOpen(true)}
+                            className="bg-white text-green-600 hover:bg-gray-100 text-sm px-4 py-1 rounded-full"
+                          >
+                            Más información
+                          </Button>
+                        </div>
                       </div>
-                    </div>
-                  </motion.div>
-                )
-              })}
-            </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
 
-            {/* Controles de navegación */}
-            <div className="absolute left-1 right-1 top-1/2 -translate-y-1/2 flex justify-between z-30">
+              {/* Controles de navegación */}
+              <div className="absolute left-1 right-1 top-1/2 -translate-y-1/2 flex justify-between z-30">
                 <button
                   onClick={prevCard}
                   className="p-1.5 rounded-full bg-white/30 shadow-lg hover:bg-white transition-colors"
@@ -156,22 +156,22 @@ export default function OpportunitiesCarousel() {
                 >
                   <ChevronRight className="w-4 h-4 text-gray-900" />
                 </button>
-            </div>
+              </div>
 
-            {/* Indicadores */}
-            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-30">
-              {cards.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentIndex(index)}
-                  className={`h-1.5 rounded-full transition-all ${
-                    index === currentIndex ? "bg-white w-4" : "bg-white/50 w-1.5 hover:bg-white/75"
-                  }`}
-                  aria-label={`Ir a diapositiva ${index + 1}`}
-                />
-              ))}
-            </div>
-          </div>
+              {/* Indicadores */}
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-30">
+                {cards.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentIndex(index)}
+                    className={`h-1.5 rounded-full transition-all ${
+                      index === currentIndex ? "bg-white w-4" : "bg-white/50 w-1.5 hover:bg-white/75"
+                    }`}
+                    aria-label={`Ir a diapositiva ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>        {/* fin carousel*/ }
         </div>
       </div>
 
