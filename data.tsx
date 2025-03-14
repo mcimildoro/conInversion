@@ -19,38 +19,40 @@ export const socialNetworks = [
 ];
 
 
-export const itemsNavbar = [
-    {
-        id: 1,
-        title: "Home",
-        icon: <HomeIcon size={25} color="#fff" strokeWidth={1} />,
-        link: "/",
-    },
-    {
-        id: 2,
-        title: "User",
-        icon: <UserRound size={25} color="#fff" strokeWidth={1} />,
-        link: "/about-me",
-    },
-    {
-        id: 3,
-        title: "Book",
-        icon: <BookText size={25} color="#fff" strokeWidth={1} />,
-        link: "/services",
-    },
-    {
-        id: 4,
-        title: "Target",
-        icon: <CodeSquare size={25} color="#fff" strokeWidth={1} />,
-        link: "/about-me",
-    },
-    {
-        id: 5,
-        title: "Home",
-        icon: <Speech size={25} color="#fff" strokeWidth={1} />,
-        link: "/about-me",
-    },
+type NavbarIconName = "HomeIcon" | "UserRound" | "BookText" | "CodeSquare" | "Speech";
+export const itemsNavbar: { id: number; title: string; icon: NavbarIconName; link: string }[] = [
+  {
+      id: 1,
+      title: "Home",
+      icon: "HomeIcon",
+      link: "/",
+  },
+  {
+      id: 2,
+      title: "User",
+      icon: "UserRound",
+      link: "/about-me",
+  },
+  {
+      id: 3,
+      title: "Book",
+      icon: "BookText",
+      link: "/services",
+  },
+  {
+      id: 4,
+      title: "Target",
+      icon: "CodeSquare",
+      link: "/about-me",
+  },
+  {
+      id: 5,
+      title: "Home",
+      icon: "Speech",
+      link: "/about-me",
+  },
 ];
+
 
 export const dataAboutPage = [
     {
@@ -114,33 +116,36 @@ export const dataCounter = [
     },
 ];
 
-export const serviceData = [
-    {
-        icon: <Crop />,
-        title: "Branding",
-        description: "Desarrollo de una identidad de marca sólida y coherente, incluyendo diseño de logotipo, colores y elementos visuales",
-    },
-    {
-        icon: <Pencil />,
-        title: "Diseño web",
-        description: "Diseño creativo y profesional de interfaces web intuitivas y atractivas, centradas en la experiencia del usuario",
-    },
-    {
-        icon: <Computer />,
-        title: "Desarrollo web",
-        description: "Diseño y desarrollo de sitios web a medida, adaptados a tus necesidades",
-    },
-    {
-        icon: <Book />,
-        title: "Copywriting",
-        description: "Creación de contenido persuasivo y atractivo que capta la atención de tu audiencia",
-    },
-    {
-        icon: <Rocket />,
-        title: "SEO",
-        description: "Optimización de tu presencia en línea mediante estrategias de SEO avanzadas, ",
-    },
+type IconName = "Crop" | "Pencil" | "Computer" | "Book" | "Rocket" | "Speech";
+export const serviceData: { icon: IconName; title: string; description: string }[] = [
+  {
+      icon: "Crop",
+      title: "Branding",
+      description: "Desarrollo de una identidad de marca sólida y coherente, incluyendo diseño de logotipo, colores y elementos visuales",
+  },
+  {
+      icon: "Pencil",
+      title: "Diseño web",
+      description: "Diseño creativo y profesional de interfaces web intuitivas y atractivas, centradas en la experiencia del usuario",
+  },
+  {
+      icon: "Computer",
+      title: "Desarrollo web",
+      description: "Diseño y desarrollo de sitios web a medida, adaptados a tus necesidades",
+  },
+  {
+      icon: "Book",
+      title: "Copywriting",
+      description: "Creación de contenido persuasivo y atractivo que capta la atención de tu audiencia",
+  },
+  {
+      icon: "Rocket",
+      title: "SEO",
+      description: "Optimización de tu presencia en línea mediante estrategias de SEO avanzadas",
+  },
 ];
+
+
 
 export const dataPortfolio = [
     {
@@ -246,18 +251,22 @@ export const dataTestimonials = [
     },
 ];
 
-export const teamMembers = [
+
+  type SocialIconName = "Youtube" | "Linkedin" | "Twitter";
+  export const teamMembers: {
+    name: string;
+    role: string;
+    description: string;
+    image: string;
+    social: SocialIconName[];
+  }[] = [
     {
       name: "Francisco D’alessandro",
       role: "CEO",
       description:
         "Economista con 12 años de experiencia en finanzas y pasión por las matemáticas. Descubrió en la inversión en bolsa la tranquilidad y el camino que buscaba. Hoy, comparte su conocimiento para ayudar a otros a alcanzar sus metas financieras.",
       image: "./assets/fran-image.png", // Reemplázalo con la imagen real
-      social: [
-        <Youtube key="youtube" size={30} strokeWidth={1} />,
-        <Linkedin key="linkedin" size={30} strokeWidth={1} />,
-        <Twitter key="twitter" size={30} strokeWidth={1} />,
-      ],
+      social: ["Youtube", "Linkedin", "Twitter"],
     },
     {
       name: "Juan Lafont",
@@ -265,11 +274,7 @@ export const teamMembers = [
       description:
         "Experto en inversión y finanzas con más de 20 años de experiencia. Apasionado del value investing, ha fundado e invertido en negocios en finanzas, real estate, energía y tecnología. Actualmente se enfoca en educación financiera y crecimiento personal, ayudando a otros a desarrollar su potencial.",
       image: "./assets/juan-image.png", // Reemplázalo con la imagen real
-      social: [
-        <Youtube key="youtube" size={30} strokeWidth={1} />,
-        <Linkedin key="linkedin" size={30} strokeWidth={1} />,
-        <Twitter key="twitter" size={30} strokeWidth={1} />,
-      ],
+      social: ["Youtube", "Linkedin", "Twitter"],
     },
   ];
 

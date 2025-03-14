@@ -8,7 +8,8 @@ interface InfoCardProps {
   title: string
 }
 
-export function InfoCard({ title }: InfoCardProps) {
+
+ function InfoCard({ title }: InfoCardProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
 
@@ -233,3 +234,5 @@ export function InfoCard({ title }: InfoCardProps) {
     </>
   )
 }
+
+export default InfoCard

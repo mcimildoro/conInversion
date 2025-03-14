@@ -1,8 +1,25 @@
 "use client";
 import Link from "next/link";
+import { JSX } from "react";
 import { itemsNavbar } from "../../../data";
 import { MotionTransition } from "../TransitionComponent/transition-component";
 import { usePathname } from "next/navigation";
+import { HomeIcon, UserRound, BookText, CodeSquare, Speech } from "lucide-react";
+
+// Define los iconos válidos como un tipo
+type NavbarIconName = "HomeIcon" | "UserRound" | "BookText" | "CodeSquare" | "Speech";
+
+// Asocia los nombres con los componentes JSX
+const navbarIcons: Record<NavbarIconName, JSX.Element> = {
+    HomeIcon: <HomeIcon size={25} color="#fff" strokeWidth={1} />,
+    UserRound: <UserRound size={25} color="#fff" strokeWidth={1} />,
+    BookText: <BookText size={25} color="#fff" strokeWidth={1} />,
+    CodeSquare: <CodeSquare size={25} color="#fff" strokeWidth={1} />,
+    Speech: <Speech size={25} color="#fff" strokeWidth={1} />,
+};
+
+
+
 
 const Navbar2 = () => {
     const router = usePathname();
@@ -20,7 +37,7 @@ const Navbar2 = () => {
                             data-tooltip-target="tooltip-default"
                         >
                             <Link href={item.link} className="text-white transition-all duration-200 hover:scale-110">
-                                {item.icon} 
+                            {navbarIcons[item.icon as NavbarIconName]}
                             </Link>
                         </div>
                     ))}

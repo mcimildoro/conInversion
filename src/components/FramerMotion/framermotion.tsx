@@ -1,6 +1,17 @@
+import { JSX } from "react";
 import { motion } from "framer-motion";
-
+import { Youtube, Linkedin, Twitter } from "lucide-react";
 import { teamMembers } from "@/../data";
+
+// Define los iconos válidos como un tipo
+type SocialIconName = "Youtube" | "Linkedin" | "Twitter";
+
+// Asocia los nombres con los componentes JSX
+const iconComponents: Record<SocialIconName, JSX.Element> = {
+    Youtube: <Youtube />,
+    Linkedin: <Linkedin />,
+    Twitter: <Twitter />,
+};
 
 export default function TeamSection() {
   return (
@@ -29,18 +40,20 @@ export default function TeamSection() {
             <p className="text-green-600 font-title">{member.role}</p>
             <p className="text-description mt-2 text-base">{member.description}</p>
 
-            {/* Íconos sociales */}
-            <div className="flex justify-center gap-4 mt-4">
-              {member.social.map((icon, i) => (
-                <motion.div
-                  key={i}
-                  whileHover={{ scale: 1.2 }}
-                  className="text-green-500 cursor-pointer"
-                >
-                  {icon}
-                </motion.div>
-              ))}
-            </div>
+           {/* Íconos sociales */}
+          <div className="flex justify-center gap-4 mt-4">
+            {member.social.map((iconName, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ scale: 1.1 }}
+                className="text-green-600 cursor-pointer"
+              >
+                {iconComponents[iconName]} {/* Aquí se obtiene el icono JSX correcto */}
+              </motion.div>
+            ))}
+          </div>
+
+
           </motion.div>
         ))}
       </div>

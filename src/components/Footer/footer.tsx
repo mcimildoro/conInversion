@@ -50,7 +50,7 @@ export function FooterWithLogo() {
         {/* 🔹 Copyright y Redes Sociales */}
         <div className="flex flex-col md:flex-row justify-between items-center relative z-10">
           <span className="text-sm text-gray-500">
-            © 2023 <Link href="https://ConInversion.com/" className="hover:underline hover:text-white transition-all">ConInversión™</Link>. Todos los derechos reservados.
+            © 2025 <Link href="https://ConInversion.com/" className="hover:underline hover:text-white transition-all">ConInversión™</Link>. Todos los derechos reservados.
           </span>
 
           {/* Redes Sociales */}
