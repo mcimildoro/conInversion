@@ -1,6 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { socialNetworks } from "../../../data";
+import { Youtube, Linkedin, Twitter } from 'lucide-react';
+
+const iconMap: { [key: string]: React.ComponentType<{ size: number; strokeWidth: number }> } = {
+  Youtube: Youtube,
+  Linkedin: Linkedin,
+  Twitter: Twitter
+};
+
 
 export function FooterWithLogo() {
   return (
@@ -48,23 +56,22 @@ export function FooterWithLogo() {
         <hr className="my-6 border-gray-500" />
 
         {/* 🔹 Copyright y Redes Sociales */}
-        <div className="flex flex-col md:flex-row justify-between items-center relative z-10">
+        <div className="flex flex-col md:flex-row justify-between items-center relative z-10 mt-10">
           <span className="text-sm text-gray-500">
             © 2025 <Link href="https://ConInversion.com/" className="hover:underline hover:text-white transition-all">ConInversión™</Link>. Todos los derechos reservados.
           </span>
 
           {/* Redes Sociales */}
-          <div className="flex items-center gap-4 mt-4 md:mt-0">
-            {socialNetworks.map(({ logo, src, id }) => (
-              <Link
-                key={id}
-                href={src}
-                target="_blank"
-                className="transition-all duration-300 hover:text-white text-gray-500 text-2xl"
-              >
-                {logo}
-              </Link>
-            ))}
+          <div className="flex items-center gap-4 mt-4 md:mt-0 ">
+          {socialNetworks.map(({ id, logo, src }: { id: number; logo: keyof typeof iconMap; src: string }) => {
+              console.log("src",src)
+              const IconComponent = iconMap[logo]; // Obtiene el componente correcto
+              return (
+                  <a key={id} href={src} target="_blank" rel="noopener noreferrer">
+                      <IconComponent size={30} strokeWidth={1} />
+                  </a>
+              );
+          })}
           </div>
         </div>
 

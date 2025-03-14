@@ -10,11 +10,12 @@ const config: Config = {
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
 
   transform: {
-    "^.+\\.(ts|tsx|js|jsx|mjs)$": ["babel-jest", { presets: ["next/babel"] }],
+    "^.+\\.(ts|tsx|js|jsx|mjs)$": "babel-jest",
   },
 
   transformIgnorePatterns: [
-    "/node_modules/(?!lucide-react|swiper|framer-motion)" // Añade todos los módulos problemáticos
+    "/node_modules/(?!lucide-react|swiper|framer-motion)", // Añade todos los módulos problemáticos
+    "/node_modules/(?!swiper|lucide-react|framer-motion)" // Agrega swiper aquí
   ],
 
   moduleNameMapper: {

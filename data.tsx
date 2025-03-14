@@ -1,21 +1,22 @@
 import { BookText, CodeSquare, HomeIcon, UserRound, Linkedin, Twitter, Youtube, Crop, Pencil, Computer, Book, Rocket, Speech } from "lucide-react";
 
+
 export const socialNetworks = [
-    {
-        id: 1,
-        logo: <Youtube size={30} strokeWidth={1} />,
-        src: "#!",
-    },
-    {
-        id: 2,
-        logo: <Linkedin size={30} strokeWidth={1} />,
-        src: "#!",
-    },
-    {
-        id: 3,
-        logo: <Twitter size={30} strokeWidth={1} />,
-        src: "#!",
-    }
+  {
+      id: 1,
+      logo: "Youtube",  // Guardamos el nombre del ícono como string
+      src: "www.youtube.com",  // URL de Youtube
+  },
+  {
+      id: 2,
+      logo: "Linkedin",
+      src: "www.linkdin.com",
+  },
+  {
+      id: 3,
+      logo: "Twitter",
+      src: "www.x.com",
+  }
 ];
 
 
@@ -279,32 +280,6 @@ export const dataTestimonials = [
   ];
 
 
-  export const dataSocialNetworks = [
-    {
-      id: 1,
-      name: "Github",
-      icon: "github",
-      link: "https://github.com/coninversor",
-    },
-    {
-      id: 2,
-      name: "Instagram",
-      icon: "instagram",
-      link: "https://instagram.com/coninversion",
-    },
-    {
-      id: 3,
-      name: "LinkedIn",
-      icon: "linkedin",
-      link: "https://linkedin.com/rafatarrega",
-    },
-    {
-      id: 4,
-      name: "Youtube",
-      icon: "youtube",
-      link: "https://youtube.com/@coninversion",
-    },
-  ];
 
   export const testimonials = [
     {

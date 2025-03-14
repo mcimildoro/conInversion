@@ -7,10 +7,11 @@ export type MotionTransitionProps = {
     children: React.ReactNode;
     className?: string;
     position: 'right' | 'bottom'
+    style?: React.CSSProperties;
 };
 
 export function MotionTransition(props: MotionTransitionProps) {
-    const { children, className, position } = props
+    const { children, className, position, style } = props
 
     return (
         <motion.div
@@ -19,6 +20,7 @@ export function MotionTransition(props: MotionTransitionProps) {
             animate="visible"
             exit="hidden"
             className={className}
+            style={style}
         >
             {children}
         </motion.div>

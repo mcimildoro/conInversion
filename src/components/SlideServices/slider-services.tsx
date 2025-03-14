@@ -10,7 +10,7 @@ import { Crop, Pencil, Computer, Book, Rocket } from 'lucide-react';
 type IconName = "Crop" | "Pencil" | "Computer" | "Book" | "Rocket";
 
 // Asocia los nombres con los componentes JSX
-const iconComponents: Record<IconName, JSX.Element> = {
+export const iconComponents: Record<IconName, JSX.Element> = {
     Crop: <Crop />,
     Pencil: <Pencil />,
     Computer: <Computer />,
