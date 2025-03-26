@@ -20,18 +20,18 @@ export const socialNetworks = [
 ];
 
 
-type NavbarIconName = "HomeIcon" | "UserRound" | "BookText" | "CodeSquare" | "Speech";
+type NavbarIconName = "Home" | "User" | "BookText" | "CodeSquare" | "Speech";
 export const itemsNavbar: { id: number; title: string; icon: NavbarIconName; link: string }[] = [
   {
       id: 1,
       title: "Home",
-      icon: "HomeIcon",
+      icon: "Home",
       link: "/",
   },
   {
       id: 2,
       title: "User",
-      icon: "UserRound",
+      icon: "User",
       link: "/about-me",
   },
   {

@@ -8,6 +8,9 @@ import 'swiper/css/scrollbar';
 import WhatsAppButton from "@/components/Whatsapp/whatsapp-button";
 import Navbar from "../components/Navbar/navbar";
 import Header from "../components/Header/header";
+import { Toaster } from "@/components/ui/sonner"
+
+import ClientLayout from "@/components/ClientLayout";
 
 const urbanist = Urbanist({
   subsets: ["latin"],
@@ -23,15 +26,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
+  
   return (
     <html lang="en">
       <body
         className={`${urbanist.className}  min-h-screen`}>
 
-            <Navbar />
-            <Header />
-            <WhatsAppButton />
-          {children}</body>
+            <ClientLayout>{children}</ClientLayout>
+            <Toaster />
+   
+          </body>
           
     </html>
   );

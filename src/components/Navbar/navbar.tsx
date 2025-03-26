@@ -1,29 +1,27 @@
 "use client";
 import Link from "next/link";
-import { JSX } from "react";
 import { itemsNavbar } from "../../../data";
 import { MotionTransition } from "../TransitionComponent/transition-component";
 import { usePathname } from "next/navigation";
-import { HomeIcon, UserRound, BookText, CodeSquare, Speech } from "lucide-react";
 
-// Define los iconos válidos como un tipo
-type NavbarIconName = "HomeIcon" | "UserRound" | "BookText" | "CodeSquare" | "Speech";
+import { Home, User, BookText, CodeSquare, MessageCircle } from "lucide-react";
+
+
 
 // Asocia los nombres con los componentes JSX
-const navbarIcons: Record<NavbarIconName, JSX.Element> = {
-    HomeIcon: <HomeIcon size={25} color="#fff" strokeWidth={1} />,
-    UserRound: <UserRound size={25} color="#fff" strokeWidth={1} />,
-    BookText: <BookText size={25} color="#fff" strokeWidth={1} />,
-    CodeSquare: <CodeSquare size={25} color="#fff" strokeWidth={1} />,
-    Speech: <Speech size={25} color="#fff" strokeWidth={1} />,
+const navbarIcons = {
+    Home: (props: any) => <Home  {...props} />,
+    User: (props: any) => <User {...props} />,
+    BookText: (props: any) => <BookText {...props} />,
+    CodeSquare: (props: any) => <CodeSquare {...props} />,
+    Speech: (props: any) => <MessageCircle {...props} />, // Speech no existe en lucide-react
 };
-
 
 
 
 const Navbar2 = () => {
     const router = usePathname();
-
+    const showHomeButton = router === "/login" || router === "/register";
     return (
         <MotionTransition 
             position="right" 
@@ -31,16 +29,25 @@ const Navbar2 = () => {
         >
             <nav className="w-auto max-w-fit pointer-events-auto">
                 <div className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-green-600 shadow-lg">
+
                     {itemsNavbar.map((item) => (
+                        
                         <div
                             key={item.id}
                             className={`px-3 py-2 transition duration-200 ease-in-out rounded-full cursor-pointer 
                             hover:bg-green-500 ${router === item.link ? 'bg-green-700 shadow-md' : ''}`}
                             data-tooltip-target="tooltip-default"
                         >
-                            <Link href={item.link} className="text-white transition-all duration-200 hover:scale-110">
-                                {navbarIcons[item.icon as NavbarIconName]}
+                            
+                            <Link
+                                href={item.link}
+                                className={`text-white transition-all duration-200 hover:scale-110 ${
+                                    router === item.link ? "bg-green-700" : "" // Asegura que el activo recibe la clase
+                                }`}
+                            >
+                                {navbarIcons[item.icon as keyof typeof navbarIcons]?.({ size: 25, color: "#fff", strokeWidth: 1 })}
                             </Link>
+
                         </div>
                     ))}
                 </div>
