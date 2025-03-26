@@ -33,20 +33,26 @@ export function LoginForm() {
   async function onSubmit(values: LoginFormValues) {
     setIsLoading(true)
     setError(null)
-
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: values.email,
-      password: values.password,
+  
+    const res = await fetch("/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
     })
-
-    if (error) {
-      setError(error.message)
+  
+    const result = await res.json()
+  
+    if (!res.ok) {
+      setError(result.error || "Error al iniciar sesión")
       setIsLoading(false)
       return
     }
-
+  
     router.push("/dashboard")
   }
+  
 
   return (
     <Card className="w-full max-w-md mx-auto">
