@@ -11,7 +11,8 @@ type Database = {
 }
 
 export async function getSession() {
-  const supabase = createServerComponentClient<Database>({ cookies })
+  const supabase = createServerComponentClient<Database>({ cookies: () => cookies() })
+
 
   const {
     data: { session },
