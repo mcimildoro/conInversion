@@ -7,7 +7,7 @@ export async function runMigrations() {
   console.log("Ejecutando migraciones de la base de datos...")
 
   // Obtener la URL de conexión desde las variables de entorno
-  const connectionString = process.env.DATABASE_URL
+  const connectionString = process.env.CONINVERSION_DATABASE_URL
 
   if (!connectionString) {
     throw new Error("DATABASE_URL no está definida en las variables de entorno")

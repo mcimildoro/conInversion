@@ -4,7 +4,7 @@ import * as schema from "./schema"
 
 // Configuración para conexión a Supabase PostgreSQL
 const connectionString =
-  process.env.DATABASE_URL || "postgresql://postgres:2oDWBP223zFiMNwC.opcngdajyqjbyvunlvco.supabase.co:5432/postgres"
+  process.env.CONINVERSION_DATABASE_URL || "postgresql://postgres:2oDWBP223zFiMNwC.opcngdajyqjbyvunlvco.supabase.co:5432/postgres"
 
 // Cliente para consultas SQL
 const client = postgres(connectionString)
