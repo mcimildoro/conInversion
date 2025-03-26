@@ -9,35 +9,31 @@ import { compare } from "bcrypt"
 import { loginSchema } from "@/lib/validators/auth"
 
 export async function POST(req: Request) {
-  const body = await req.json()
+  try {
+    const body = await req.json()
 
-  const validationResult = loginSchema.safeParse(body)
-  if (!validationResult.success) {
-    return NextResponse.json(
-      { error: "Datos inválidos", details: validationResult.error.format() },
-      { status: 400 }
-    )
+    const validation = loginSchema.safeParse(body)
+    if (!validation.success) {
+      return NextResponse.json({ error: "Datos inválidos" }, { status: 400 })
+    }
+
+    const { email, password } = validation.data
+
+    const user = await db.query.users.findFirst({ where: eq(users.email, email) })
+    if (!user || !(await compare(password, user.password ?? ""))) {
+      return NextResponse.json({ error: "Credenciales inválidas" }, { status: 401 })
+    }
+
+    const supabase = createServerActionClient({ cookies: () => cookies() })
+    const { error: authError } = await supabase.auth.signInWithPassword({ email, password })
+
+    if (authError) {
+      return NextResponse.json({ error: authError.message }, { status: 401 })
+    }
+
+    return NextResponse.json({ success: true })
+  } catch (err) {
+    console.error("Login error:", err)
+    return NextResponse.json({ error: "Error interno del servidor" }, { status: 500 })
   }
-
-  const { email, password } = validationResult.data
-
-  // Verificamos en la base de datos interna
-  const user = await db.query.users.findFirst({
-    where: eq(users.email, email),
-  })
-
-  if (!user || !(await compare(password, user.password ?? ""))) {
-    return NextResponse.json({ error: "Credenciales inválidas" }, { status: 401 })
-  }
-
-  // Autenticación Supabase con cookie
-  const supabase = createServerActionClient({ cookies })
-
-  const { error: authError } = await supabase.auth.signInWithPassword({ email, password })
-
-  if (authError) {
-    return NextResponse.json({ error: authError.message }, { status: 401 })
-  }
-
-  return NextResponse.json({ success: true })
 }

@@ -42,10 +42,16 @@ export function LoginForm() {
       body: JSON.stringify(values),
     })
   
-    const result = await res.json()
+    let result: { error?: string } = {}
+    try {
+      result = await res.json()
+    } catch {
+      result = { error: "Error inesperado del servidor" }
+    }
+    
   
     if (!res.ok) {
-      setError(result.error || "Error al iniciar sesión")
+      setError(result.error ?? null)
       setIsLoading(false)
       return
     }
