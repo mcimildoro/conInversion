@@ -1,18 +1,31 @@
 // lib/auth/session.ts
 
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
+import { createServerClient } from "@supabase/ssr"
 import { cookies } from "next/headers"
 
-type Database = {
-  users: {
-    id: string
-    email: string
-    password: string
-  }
+export function createServerSupabaseClient() {
+  return createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll: async () => {
+          const cookieStore = await cookies()
+          return cookieStore.getAll()
+        },
+        setAll: async (cookiesToSet) => {
+          const cookieStore = await cookies()
+          for (const { name, value } of cookiesToSet) {
+            cookieStore.set(name, value)
+          }
+        },
+      },
+    }
+  )
 }
 
 export async function getSession() {
-  const supabase = createServerComponentClient<Database>({ cookies: () => cookies() })
+  const supabase = createServerSupabaseClient()
   const { data: { session } } = await supabase.auth.getSession()
 
   console.log("🎯 Sesión desde servidor:", session)
@@ -20,8 +33,7 @@ export async function getSession() {
 }
 
 export async function getCurrentUser() {
-  const supabase = createServerComponentClient<Database>({ cookies: () => cookies() })
+  const supabase = createServerSupabaseClient()
   const { data: { user } } = await supabase.auth.getUser()
-
   return user ?? null
 }
