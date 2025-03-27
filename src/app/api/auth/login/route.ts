@@ -16,16 +16,24 @@ export async function POST(req: Request) {
     if (!validation.success) {
       return NextResponse.json({ error: "Datos inválidos" }, { status: 400 })
     }
+    console.log("📥 Body recibido:", body);
+    console.log("📋 Validación:", validation);
+    
+
+
 
     const { email, password } = validation.data
 
     const user = await db.query.users.findFirst({ where: eq(users.email, email) })
+    console.log("🧍 Usuario encontrado:", user);
+    
     if (!user || !(await compare(password, user.password ?? ""))) {
       return NextResponse.json({ error: "Credenciales inválidas" }, { status: 401 })
     }
 
     const supabase = createServerActionClient({ cookies: () => cookies() })
     const { error: authError } = await supabase.auth.signInWithPassword({ email, password })
+    console.log("🔐 Resultado Supabase:", authError);
 
     if (authError) {
       return NextResponse.json({ error: authError.message }, { status: 401 })
