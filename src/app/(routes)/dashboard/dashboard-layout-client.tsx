@@ -2,26 +2,21 @@
 
 import type React from "react"
 import { useState, useEffect } from "react"
-import { DashboardNav } from "@/components/dashboards/nav"
 import { DashboardHeader } from "@/components/dashboards/header"
+import { DashboardNavMobile } from "@/components/dashboards/nav-mobile"
+import { DashboardNavDesktop } from "@/components/dashboards/nav-desktop"
 
 interface DashboardLayoutProps {
   children: React.ReactNode
-  user: any // Tipo simplificado para este ejemplo
+  user: any
 }
 
 export function DashboardLayoutClient({ children, user }: DashboardLayoutProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen)
-  }
+  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen)
+  const closeMobileMenu = () => setIsMobileMenuOpen(false)
 
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false)
-  }
-
-  // Cerrar el menú móvil cuando cambia el tamaño de la ventana a desktop
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768 && isMobileMenuOpen) {
@@ -34,16 +29,28 @@ export function DashboardLayoutClient({ children, user }: DashboardLayoutProps) 
   }, [isMobileMenuOpen])
 
   return (
-    <div className="flex min-h-screen flex-col bg-white">
-      <DashboardHeader user={user} toggleMobileMenu={toggleMobileMenu} isMobileMenuOpen={isMobileMenuOpen} />
+    <div className="flex min-h-screen flex-col bg-white overflow-hidden">
+
+
+      <DashboardHeader
+        user={user}
+        toggleMobileMenu={toggleMobileMenu}
+        isMobileMenuOpen={isMobileMenuOpen}
+      />
+
       <div className="flex flex-1">
-        <aside className="hidden md:block w-auto">
-          <DashboardNav />
-        </aside>
-        <main className="flex-1 p-4 md:p-6 w-full">{children}</main>
+        <DashboardNavDesktop />
+
+        <main className="flex-1 p-4 md:p-6 w-full">
+          {children}
+        </main>
       </div>
-      <DashboardNav isMobileMenuOpen={isMobileMenuOpen} closeMobileMenu={closeMobileMenu} />
+      {isMobileMenuOpen && (
+      <DashboardNavMobile
+        isOpen={isMobileMenuOpen}
+        onClose={closeMobileMenu}
+      />
+      )}
     </div>
   )
 }
-

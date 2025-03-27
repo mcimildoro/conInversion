@@ -55,10 +55,6 @@ html,body {
 }
 
 
-main {
-  height: 100vh;
-  height: 100dvh;
-}
 
 @layer utilities {
   .text-balance {
