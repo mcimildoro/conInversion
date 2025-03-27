@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+ConInversión
 
-## Getting Started
+Aplicación web desarrollada con Next.js (App Router) y Supabase Auth, diseñada para permitir a los usuarios registrarse, iniciar sesión y acceder a un panel personalizado.
 
-First, run the development server:
+👁‍🗨️ Tech Stack
 
-```bash
+Next.js (App Router)
+
+React + Tailwind CSS
+
+Supabase (Auth + DB)
+
+TypeScript
+
+Vercel (Deploy)
+
+✨ Cómo iniciar el proyecto
+
+Clona el repositorio:
+
+git clone https://github.com/tu-usuario/coninversion.git
+cd coninversion
+
+Instala las dependencias:
+
+npm install
+
+Crea un archivo .env en la raíz con tus claves de Supabase:
+
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+
+Inicia el servidor de desarrollo:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🛠️ Migración a @supabase/ssr
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Antes usábamos @supabase/auth-helpers-nextjs, pero fue deprecado. Migramos a @supabase/ssr siguiendo los pasos:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Reemplazamos createServerComponentClient por createServerClient.
 
-## Learn More
+Creamos un archivo server-client.ts con:
 
-To learn more about Next.js, take a look at the following resources:
+// lib/supabase/server-client.ts
+import { createServerClient } from "@supabase/ssr"
+import { cookies as getCookies } from "next/headers"
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+export const createServerSupabaseClient = () => {
+  return createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        async getAll() {
+          const cookieStore = await getCookies()
+          return cookieStore.getAll()
+        },
+        async setAll(cookiesToSet) {
+          const cookieStore = await getCookies()
+          cookiesToSet.forEach(({ name, value }) => {
+            cookieStore.set(name, value)
+          })
+        },
+      },
+    }
+  )
+}
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Eliminamos el middleware.ts que ya no era necesario.
 
-## Deploy on Vercel
+Confirmamos que la sesión se persiste correctamente en local y en producción.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+🚚 Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Este proyecto está desplegado en Vercel:
+
+🔗 https://con-inversion.vercel.app
+
+📁 Estructura destacada
+
+src/
+├── app/                  → App Router pages y layouts
+├── components/           → Componentes reutilizables (UI, dashboard)
+├── lib/
+│   ├── auth/             → getSession y getCurrentUser
+│   └── supabase/         → client.ts y server-client.ts (Supabase SSR)
+├── styles/               → Tailwind y globales
+
+📖 Recursos
+
+Next.js App Router Docs
+
+Supabase SSR Docs
+
