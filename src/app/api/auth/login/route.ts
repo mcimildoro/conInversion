@@ -31,7 +31,8 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: authError.message }, { status: 401 })
     }
 
-    return NextResponse.json({ success: true })
+    return NextResponse.redirect(new URL("/dashboard", req.url))
+
   } catch (err) {
     console.error("Login error:", err)
     return NextResponse.json({ error: "Error interno del servidor" }, { status: 500 })

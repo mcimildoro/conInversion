@@ -34,24 +34,13 @@ export function LoginForm() {
     setIsLoading(true)
     setError(null)
   
-    const res = await fetch("/api/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(values),
+    const { error } = await supabase.auth.signInWithPassword({
+      email: values.email,
+      password: values.password,
     })
   
-    let result: { error?: string } = {}
-    try {
-      result = await res.json()
-    } catch {
-      result = { error: "Error inesperado del servidor" }
-    }
-    
-  
-    if (!res.ok) {
-      setError(result.error ?? null)
+    if (error) {
+      setError(error.message)
       setIsLoading(false)
       return
     }
